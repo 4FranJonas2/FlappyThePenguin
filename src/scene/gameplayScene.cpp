@@ -1,13 +1,9 @@
 #include "scene/gameplayScene.h"
 
-#include "objects/obstacle.h"
-#include "objects/utils.h"
-#include "scene/menuScene.h"
-
-
 Player player;
 Player player2;
 Obstacle obstacle;
+
 static Texture2D background;
 static Texture2D waterReflection;
 static Texture2D clouds;
@@ -83,7 +79,7 @@ void drawGameplay(bool& menuOn, bool& pauseOn)
 	drawObstacle(obstacle);
 
 	drawButton(pauseGame);
-	drawPauseButtonTitle();
+	//drawPauseButtonTitle();
 
 	if (isButtonPressed(pauseGame))
 	{
@@ -128,12 +124,6 @@ void drawParalaxBackgournd()
 
 	DrawTextureEx(clouds, Vector2{ scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);
 	DrawTextureEx(clouds, Vector2{ clouds.width * 2 + scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);	
-}
-
-void resetGame()
-{
-	initPlayer(player);
-	initObstacle(obstacle);
 }
 
 void unloadGameplay()

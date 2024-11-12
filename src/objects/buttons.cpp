@@ -2,14 +2,22 @@
 
 #include "raylib.h"
 
-#include "utils.h"
+Button onePlayer;
+Button twoPlayer;
+Button controls;
+Button credits;
+Button backToMenu;
+Button exitGame;
+Button pauseGame;
+Button resumeGame;
+Button playAgain;
 
 void initButton(Button& b, int xPos, int yPos)
 {
 	b.posX = xPos;
 	b.posY = yPos;
-	b.width = 200;
-	b.height = 50;
+	b.width = buttonWidth;
+	b.height = buttonHeight;
 }
 
 void drawButton(Button& b)
@@ -30,41 +38,46 @@ bool isButtonPressed(Button& b)
 
 void drawPlayTitle()
 {
-	DrawText(TextFormat("PLAY"), screenWidth / 2 - 40, 210, 30, RED);
+	DrawText(TextFormat("1 PLAYER"), screenWidth / 2 - 70, 210, fontSize, RED);
+}
+
+void drawPlayTitle2()
+{
+	DrawText(TextFormat("2 PLAYERS"), screenWidth / 2 - 85, 310, fontSize, RED);
 }
 
 void drawControlTitle()
 {
-	DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 310, 30, RED);
+	DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 410, fontSize, RED);
 }
 
 void drawCreditsTitle()
 {
-	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 410, 30, RED);
+	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 510, fontSize, RED);
 }
 
 void drawExitTitle()
 {
-	DrawText(TextFormat("EXIT"), screenWidth / 2 - 40, 510, 30, RED);
+	DrawText(TextFormat("EXIT"), screenWidth / 2 - 40, 660, fontSize, RED);
 }
 
 void drawBackToMenuTitle()
 {
-	DrawText(TextFormat("Back Menu"), screenWidth - 200, screenHeight -50, 30, RED);
+	DrawText(TextFormat("Back Menu"), screenWidth - 200, screenHeight -50, fontSize, RED);
 }
 
-void drawPauseButtonTitle()
-{
-	DrawText(TextFormat("PAUSE"), screenWidth - 150, 560, 30, RED);
-}
+//void drawPauseButtonTitle()
+//{
+//	DrawText(TextFormat("PAUSE"), screenWidth - 150, 560, fontSize, RED);
+//}
 
 void drawResumeGameTitle()
 {
-	DrawText(TextFormat("RESUME"), screenWidth / 2 - 160, 510, 30, RED);
+	DrawText(TextFormat("RESUME"), screenWidth / 2 - 160, 510, fontSize, RED);
 }
 
 void drawPlayAgainTitle()
 {
-	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 190, 510, 30, RED);
+	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 90, 510, fontSize, RED);
 }
 

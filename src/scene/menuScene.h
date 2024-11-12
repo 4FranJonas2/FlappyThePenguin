@@ -1,5 +1,7 @@
 #pragma once
 
+#include "objects/buttons.h"
+
 void initMenu();
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn);
@@ -13,6 +15,8 @@ void drawBackToMenu(bool& boolTrue, bool& boolFalse);
 void drawPause(bool& menuOn, bool& pauseOn);
 
 void drawGameOver(bool& menuOn, bool& gameOver);
+
+void resetGame();
 
 void unloadMenu();
 

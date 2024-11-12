@@ -1,7 +1,5 @@
 #include "objects/player.h"
 
-#include "objects/utils.h"
-
 //Sound loseSfx;
 //Sound boostSfx;
 

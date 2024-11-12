@@ -2,7 +2,7 @@
 
 #include "raylib.h"
 
-#include "objects/obstacle.h"
+#include "objects/utils.h"
 
 struct Player
 {
@@ -27,7 +27,6 @@ struct Player
     Texture2D texture;
 };
 
- 
 //extern Sound loseSfx;
 //extern Sound boostSfx;
 

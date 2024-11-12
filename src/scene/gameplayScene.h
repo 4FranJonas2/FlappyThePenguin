@@ -1,7 +1,6 @@
 #pragma once
 
-#include "objects/player.h"
-#include "objects/buttons.h"
+#include "scene/menuScene.h"
 
 void initGameplay();
 
@@ -18,7 +17,5 @@ void initBackground();
 void updateBackground();
 
 void drawParalaxBackgournd();
-
-void resetGame();
 
 void unloadGameplay();

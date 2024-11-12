@@ -2,8 +2,7 @@
 
 #include "raylib.h"
 
-#include "scene/gameplayScene.h"
-#include "scene/menuScene.h"
+//#include "scene/menuScene.h"
 
 static void Initialization();
 static void update();

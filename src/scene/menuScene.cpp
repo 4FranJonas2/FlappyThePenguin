@@ -1,9 +1,5 @@
 #include "scene/menuScene.h"
 
-#include "raylib.h"
-
-#include "objects/buttons.h"
-#include "objects/utils.h"
 //#include "scene/gameplayScene.h"
 
 //extern Texture2D background;
@@ -28,7 +24,7 @@ void initMenu()
 
 	initButton(backToMenu, screenWidth - 220, screenHeight - 60);
 	initButton(resumeGame, midScreenX - 200, 500);
-	initButton(playAgain, midScreenX - 200, 500);
+	initButton(playAgain, midScreenX - 100, 500);
 }
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
@@ -48,6 +44,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	drawButton(exitGame);
 
 	drawPlayTitle();
+	drawPlayTitle2();
 	drawControlTitle();
 	drawCreditsTitle();
 	drawExitTitle();
@@ -207,6 +204,15 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 	}
 
 	drawBackToMenu(menuOn, gameOver);
+}
+
+void resetGame()
+{
+	Player player;
+	Obstacle obstacle;
+
+	initPlayer(player);
+	initObstacle(obstacle);
 }
 
 void unloadMenu()
