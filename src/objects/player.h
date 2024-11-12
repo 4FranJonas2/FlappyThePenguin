@@ -9,6 +9,7 @@ struct Player
     Vector2 position;
     Vector2 speed;
 
+    bool matchStart;
     bool isPlayer1;
 
     float radius;
@@ -33,5 +34,5 @@ struct Player
 void initPlayer(Player& player);
 void loadPlayer(Player& player);
 void updatePlayer(Player& player);
-void drawPlayer(Player& player);
+void drawPlayer(Player player);
 void unloadPlayer(Player& player);

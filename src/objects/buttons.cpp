@@ -4,31 +4,11 @@
 
 #include "utils.h"
 
-
-Button button;
-Button controls;
-Button credits;
-Button backToMenu;
-Button exitGame;
-Button pauseGame;
-Button resumeGame;
-Button playAgain;
-Button page1;
-Button page2;
-
 void initButton(Button& b, int xPos, int yPos)
 {
 	b.posX = xPos;
 	b.posY = yPos;
 	b.width = 200;
-	b.height = 50;
-}
-
-void initPageButton(Button& b, int xPos, int yPos)
-{
-	b.posX = xPos;
-	b.posY = yPos;
-	b.width = 50;
 	b.height = 50;
 }
 
@@ -55,12 +35,12 @@ void drawPlayTitle()
 
 void drawControlTitle()
 {
-	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 410, 30, RED);
+	DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 310, 30, RED);
 }
 
 void drawCreditsTitle()
 {
-	DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 310, 30, RED);
+	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 410, 30, RED);
 }
 
 void drawExitTitle()
@@ -70,7 +50,7 @@ void drawExitTitle()
 
 void drawBackToMenuTitle()
 {
-	DrawText(TextFormat("MENU"), screenWidth / 2 + 110, 510, 30, RED);
+	DrawText(TextFormat("Back Menu"), screenWidth - 200, screenHeight -50, 30, RED);
 }
 
 void drawPauseButtonTitle()
@@ -88,12 +68,3 @@ void drawPlayAgainTitle()
 	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 190, 510, 30, RED);
 }
 
-void drawPage1Title()
-{
-	DrawText(TextFormat("1"), screenWidth / 2 - 130, 510, 30, RED);
-}
-
-void drawPage2Title()
-{
-	DrawText(TextFormat("2"), screenWidth / 2 - 30, 510, 30, RED);
-}
