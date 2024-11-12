@@ -4,7 +4,7 @@
 
 #include "objects/buttons.h"
 #include "objects/utils.h"
-#include "scene/gameplayScene.h"
+//#include "scene/gameplayScene.h"
 
 //extern Texture2D background;
 //extern Music menuMusic;
@@ -18,18 +18,17 @@ void initMenu()
 	//SetMusicVolume(menuMusic, 0.5f);
 	//
 	//PlayMusicStream(menuMusic);
+	int midScreenX = screenWidth / 2;
 
-	initButton(button, screenWidth / 2 - 100, 200);
-	initButton(controls, screenWidth / 2 - 100, 300);
-	initButton(credits, screenWidth / 2 - 100, 400);
-	initButton(exitGame, screenWidth / 2 - 100, 500);
+	initButton(onePlayer, midScreenX - 100, 200);
+	initButton(twoPlayer, midScreenX - 100, 300);
+	initButton(controls, midScreenX - 100, 400);
+	initButton(credits, midScreenX - 100, 500);
+	initButton(exitGame, midScreenX - 100, 650);
 
-	initButton(backToMenu, screenWidth / 2 + 50, 500);
-	initButton(resumeGame, screenWidth / 2 - 200, 500);
-	initButton(playAgain, screenWidth / 2 - 200, 500);
-
-	initPageButton(page1, screenWidth / 2 - 150, 500);
-	initPageButton(page2, screenWidth / 2 - 50, 500);
+	initButton(backToMenu, screenWidth - 220, screenHeight - 60);
+	initButton(resumeGame, midScreenX - 200, 500);
+	initButton(playAgain, midScreenX - 200, 500);
 }
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
@@ -42,7 +41,8 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
 
-	drawButton(button);
+	drawButton(onePlayer);
+	drawButton(twoPlayer);
 	drawButton(controls);
 	drawButton(credits);
 	drawButton(exitGame);
@@ -52,7 +52,13 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	drawCreditsTitle();
 	drawExitTitle();
 
-	if (isButtonPressed(button))
+	if (isButtonPressed(onePlayer))
+	{
+		menuOn = false;
+		resetGame();
+	}
+
+	if (isButtonPressed(twoPlayer))
 	{
 		menuOn = false;
 		resetGame();
@@ -108,7 +114,7 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 }
 
-void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
+void drawCredits(bool& menuOn, bool& creditsOn)
 {
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
@@ -139,50 +145,8 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 	DrawText("Raylib", screenWidth / 2 + 50, 550, 30, WHITE);
 
-	drawPageButton(creditsOn, creditsOn2);
-
 	drawBackToMenu(menuOn, creditsOn);
 
-}
-
-void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
-{
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic);
-
-	ClearBackground(BLACK);
-
-	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
-
-	DrawText("Menu Music: ", screenWidth / 2 - 250, 150, 30, WHITE);
-
-	DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
-	DrawText("Tronik in SUNO AI ", screenWidth / 2 + 50, 180, 30, WHITE);
-
-	DrawText(" SFX By: ", screenWidth / 2 - 250, 250, 30, WHITE);
-
-	DrawText("", screenWidth / 2 + 50, 250, 30, WHITE);
-
-	DrawText(" SFX By: ", screenWidth / 2 - 250, 350, 30, WHITE);
-
-	DrawText("", screenWidth / 2 + 50, 350, 30, WHITE);
-
-	DrawText(" SFX By: ", screenWidth / 2 - 250, 450, 30, WHITE);
-
-	DrawText("", screenWidth / 2 + 50, 450, 30, WHITE);
-
-	DrawText(" SFX by: ", screenWidth / 2 - 250, 550, 30, WHITE);
-
-	DrawText("", screenWidth / 2 + 50, 550, 30, WHITE);
-
-	DrawText(" SFX by: ", screenWidth / 2 - 250, 650, 30, WHITE);
-
-	DrawText("", screenWidth / 2 + 50, 650, 30, WHITE);
-
-	drawPageButton(creditsOn, creditsOn2);
-
-	drawBackToMenu(menuOn, creditsOn2);
 }
 
 void drawBackToMenu(bool& boolTrue, bool& boolFalse)
@@ -219,28 +183,6 @@ void drawPause(bool& menuOn, bool& pauseOn)
 		pauseOn = false;
 
 	drawBackToMenu(menuOn, pauseOn);
-}
-
-void drawPageButton(bool& creditsOn, bool& creditsOn2)
-{
-
-	drawButton(page1);
-	drawPage1Title();
-
-	if (isButtonPressed(page1))
-	{
-		creditsOn = true;
-		creditsOn2 = false;
-	}
-
-	drawButton(page2);
-	drawPage2Title();
-
-	if (isButtonPressed(page2))
-	{
-		creditsOn = false;
-		creditsOn2 = true;
-	}
 }
 
 void drawGameOver(bool& menuOn, bool& gameOver)

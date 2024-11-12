@@ -11,8 +11,8 @@ static void draw();
 static void unloadGame();
 static void close();
 
-int screenWidth = 800;
-int screenHeight = 600;
+int screenWidth = 1024;
+int screenHeight = 768;
 int screenWidthMin = 0;
 int screenHeightMin = 0;
 
@@ -75,11 +75,7 @@ static void draw()
 	}
 	else if (creditsOn)
 	{
-		drawCredits(menuOn, creditsOn, creditsOn2);
-	}
-	else if (creditsOn2)
-	{
-		drawSecondCredits(menuOn, creditsOn, creditsOn2);
+		drawCredits(menuOn, creditsOn);
 	}
 	else if (gameOver)
 	{

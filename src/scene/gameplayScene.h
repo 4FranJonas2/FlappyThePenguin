@@ -1,6 +1,7 @@
 #pragma once
 
 #include "objects/player.h"
+#include "objects/buttons.h"
 
 void initGameplay();
 
