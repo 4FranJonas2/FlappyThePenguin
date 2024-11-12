@@ -1,12 +1,12 @@
 #include "scene/gameplayScene.h"
 
-#include "objects/player.h"
 #include "objects/obstacle.h"
 #include "objects/utils.h"
 #include "scene/menuScene.h"
 #include "objects/buttons.h"
 
 Player player;
+Player player2;
 Obstacle obstacle;
 static Texture2D background;
 static Texture2D waterReflection;
@@ -21,7 +21,10 @@ static float scrollingFront = 0.0f;
 void initGameplay()
 {
 	initBackground();
+	player.isPlayer1 = true;
+	player2.isPlayer1 = false;
 	initPlayer(player);
+	initPlayer(player2);
 	initObstacle(obstacle);
 
 	initButton(pauseGame, screenWidth  - 200, 550);
@@ -30,14 +33,17 @@ void initGameplay()
 void loadGameplay()
 {
 	loadPlayer(player);
+	loadPlayer(player2);
 }
 
 void updateGameplay(bool& menuOn, bool& gameOver)
 {
 	updatePlayer(player);
+	updatePlayer(player2);
 	updateObstacle(obstacle);
 
-	checkCollision();
+	checkCollision(player);
+	checkCollision(player2);
 
 	if (player.life <= 0)
 	{
@@ -48,22 +54,22 @@ void updateGameplay(bool& menuOn, bool& gameOver)
 	updateBackground();
 }
 
-void checkCollision()
+void checkCollision(Player& actualPlayer)
 {
-	bool collisionTop = (player.position.x + player.radius >= obstacle.position.x &&
-		player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
-		player.position.y + player.radius >= 0 &&
-		player.position.y - player.radius <= obstacle.topHeight);
+	bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
+		actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
+		actualPlayer.position.y + actualPlayer.radius >= 0 &&
+		actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight);
 
-	bool collisionBottom = (player.position.x + player.radius >= obstacle.position.x &&
-		player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
-		player.position.y + player.radius >= obstacle.topHeight + obstacle.gap &&
-		player.position.y - player.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
-
+	bool collisionBottom = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
+		actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
+		actualPlayer.position.y + actualPlayer.radius >= obstacle.topHeight + obstacle.gap &&
+		actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
+		
 	if (collisionTop || collisionBottom)
 	{
 		initObstacle(obstacle); 
-		player.life--;          
+		actualPlayer.life--;
 	}
 
 }
@@ -73,6 +79,7 @@ void drawGameplay(bool& menuOn, bool& pauseOn)
 	drawParalaxBackgournd();
 	ClearBackground(GREEN);
 	drawPlayer(player);
+	drawPlayer(player2);
 	drawObstacle(obstacle);
 
 	drawButton(pauseGame);

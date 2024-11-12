@@ -6,7 +6,6 @@
 #include "scene/menuScene.h"
 
 static void Initialization();
-static void loadGame();
 static void update();
 static void draw();
 static void unloadGame();
@@ -32,8 +31,6 @@ void run()
 {
 	Initialization();
 
-	loadGame();
-
 	while (!WindowShouldClose())
 	{
 		update();
@@ -54,10 +51,7 @@ static void Initialization()
 	initGameplay();
 
 	initMenu();
-}
 
-static void loadGame()
-{
 	loadGameplay();
 }
 

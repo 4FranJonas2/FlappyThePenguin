@@ -7,7 +7,7 @@ void initObstacle(Obstacle& o)
 	o.position = { static_cast<float>(screenWidth),
 				   static_cast<float>(screenHeightMin) };
 
-	o.speed = { 500.0f, 0.0f };
+	o.speed = { 200.0f, 0.0f };
 
 	o.width = 30;
 

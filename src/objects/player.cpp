@@ -39,9 +39,12 @@ void updatePlayer(Player& player)
 
 	player.position.y += player.speed.y * GetFrameTime();
 
-	if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) || IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+	if (IsKeyDown(KEY_SPACE) && player.isPlayer1)
 		player.speed.y = -200.f;
 
+	else if (IsKeyDown(KEY_UP) && !player.isPlayer1)
+		player.speed.y = -200.f;
+	
 	if (player.position.y > screenHeight)
 	{
 		player.life--;

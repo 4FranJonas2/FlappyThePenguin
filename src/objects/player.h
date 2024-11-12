@@ -9,6 +9,8 @@ struct Player
     Vector2 position;
     Vector2 speed;
 
+    bool isPlayer1;
+
     float radius;
     bool isActive;
     int life;
