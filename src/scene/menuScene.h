@@ -2,6 +2,9 @@
 
 #include "objects/buttons.h"
 
+extern bool endGame;
+
+
 void initMenu();
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn);

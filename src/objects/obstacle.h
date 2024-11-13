@@ -4,6 +4,7 @@
 
 #include "objects/player.h"
 
+
 struct Obstacle
 {
     Vector2 position;
@@ -14,6 +15,7 @@ struct Obstacle
     int bottomHeight;
 };
 
+extern Obstacle obstacle;
 //extern Sound loseSfx;
 //extern Sound boostSfx;
 

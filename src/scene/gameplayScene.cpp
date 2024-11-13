@@ -1,9 +1,5 @@
 #include "scene/gameplayScene.h"
 
-Player player;
-Player player2;
-Obstacle obstacle;
-
 static Texture2D background;
 static Texture2D waterReflection;
 static Texture2D clouds;
@@ -20,7 +16,8 @@ void initGameplay()
 	player.isPlayer1 = true;
 	player2.isPlayer1 = false;
 	initPlayer(player);
-	initPlayer(player2);
+	if (!onePlayerGame)
+		initPlayer(player2);
 	initObstacle(obstacle);
 }
 
@@ -29,19 +26,23 @@ void initGameplay()
 void loadGameplay()
 {
 	loadPlayer(player);
-	loadPlayer(player2);
+	if (!onePlayerGame)
+		loadPlayer(player2);
+
 }
 
 void updateGameplay(bool& menuOn, bool& gameOver)
 {
 	updatePlayer(player);
-	updatePlayer(player2);
+	if (!onePlayerGame)
+		updatePlayer(player2);
 	updateObstacle(obstacle);
 
 	checkCollision(player);
-	checkCollision(player2);
+	if (!onePlayerGame)
+		checkCollision(player2);
 
-	if (player.life <= 0)
+	if (player.life <= 0 || player2.life <=0)
 	{
 		gameOver = true;
 		drawGameOver(menuOn, gameOver);
@@ -61,10 +62,10 @@ void checkCollision(Player& actualPlayer)
 		actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
 		actualPlayer.position.y + actualPlayer.radius >= obstacle.topHeight + obstacle.gap &&
 		actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
-		
+
 	if (collisionTop || collisionBottom)
 	{
-		initObstacle(obstacle); 
+		initObstacle(obstacle);
 		actualPlayer.life--;
 	}
 
@@ -75,7 +76,8 @@ void drawGameplay(bool& menuOn, bool& pauseOn)
 	drawParalaxBackgournd();
 	ClearBackground(GREEN);
 	drawPlayer(player);
-	drawPlayer(player2);
+	if (!onePlayerGame)
+		drawPlayer(player2);
 	drawObstacle(obstacle);
 
 	drawButton(pauseGame);
@@ -87,7 +89,9 @@ void drawGameplay(bool& menuOn, bool& pauseOn)
 		menuOn = false;
 	}
 
-	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin , screenHeightMin , 30, RED);
+	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin, screenHeightMin, 30, ORANGE);
+	if (!onePlayerGame)
+		DrawText(TextFormat(" Life %01i", player2.life), screenWidth-100, screenHeightMin, 30, RED);
 }
 
 void initBackground()
@@ -122,8 +126,8 @@ void drawParalaxBackgournd()
 	DrawTextureEx(moon, Vector2{ scrollingFront, static_cast<float>(screenHeightMin) + 20 }, 0.0f, 2.5f, WHITE);
 	DrawTextureEx(moon, Vector2{ moon.width * 2 + scrollingFront, static_cast<float>(screenHeightMin) + 20 }, 0.0f, 2.5f, WHITE);
 
-	DrawTextureEx(clouds, Vector2{ scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);
-	DrawTextureEx(clouds, Vector2{ clouds.width * 2 + scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);	
+	DrawTextureEx(clouds, Vector2{ scrollingMid, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(clouds, Vector2{ clouds.width * 2 + scrollingMid, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
 }
 
 void unloadGameplay()

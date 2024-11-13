@@ -4,6 +4,8 @@
 
 #include "objects/utils.h"
 
+extern bool onePlayerGame;
+
 struct Player
 {
     Vector2 position;
@@ -26,6 +28,9 @@ struct Player
     Rectangle frameRec;
     Texture2D texture;
 };
+
+extern Player player;
+extern Player player2;
 
 //extern Sound loseSfx;
 //extern Sound boostSfx;

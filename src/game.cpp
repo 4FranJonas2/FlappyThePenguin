@@ -23,6 +23,7 @@ bool exitOn = false;
 bool gameOver = false;
 bool pauseOn = false;
 
+
 //Music menuMusic;
 //Music gameplayMusic;
 
@@ -30,7 +31,7 @@ void run()
 {
 	Initialization();
 
-	while (!WindowShouldClose())
+	while (!WindowShouldClose() && !endGame)
 	{
 		update();
 		draw();

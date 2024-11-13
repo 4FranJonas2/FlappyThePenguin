@@ -1,5 +1,7 @@
 #include "objects/obstacle.h"
 
+Obstacle obstacle;
+
 void initObstacle(Obstacle& o)
 {
 	o.position = { static_cast<float>(screenWidth),

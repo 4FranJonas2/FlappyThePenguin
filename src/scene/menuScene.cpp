@@ -4,6 +4,7 @@
 
 //extern Texture2D background;
 //extern Music menuMusic;
+bool endGame;
 
 void initMenu()
 {
@@ -15,6 +16,7 @@ void initMenu()
 	//
 	//PlayMusicStream(menuMusic);
 	int midScreenX = screenWidth / 2;
+	endGame = false;
 
 	initButton(onePlayer, midScreenX - 100, 200);
 	initButton(twoPlayer, midScreenX - 100, 300);
@@ -52,12 +54,14 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	if (isButtonPressed(onePlayer))
 	{
 		menuOn = false;
+		onePlayerGame = true;
 		resetGame();
 	}
 
 	if (isButtonPressed(twoPlayer))
 	{
 		menuOn = false;
+		onePlayerGame = false;
 		resetGame();
 	}
 
@@ -76,7 +80,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	if (isButtonPressed(exitGame))
 	{
 		//StopMusicStream(menuMusic);
-		CloseWindow();
+		endGame = true;
 	}
 
 	if (isButtonPressed(backToMenu))
@@ -86,7 +90,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 		controlsOn = false;
 	}
 
-	DrawText("0.3", screenWidth - 50, screenHeight - 50, 30, RED);
+	DrawText("0.4", screenWidth - 50, screenHeight - 50, 30, RED);
 }
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
@@ -99,13 +103,13 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 	DrawText("CONTROLS", screenWidth / 2 - 100, 100, 40, WHITE);
 
-	DrawText("Left Click: ", screenWidth / 2 - 220, 250, 30, WHITE);
+	DrawText("Player 1 Spacebar: ", screenWidth / 2 - 220, 250, 30, WHITE);
 
-	DrawText("Shoot", screenWidth / 2 + 100, 250, 30, WHITE);
+	DrawText("Jump", screenWidth / 2 + 100, 250, 30, WHITE);
 
-	DrawText("Right Click: ", screenWidth / 2 - 220, 350, 30, WHITE);
+	DrawText("Player 2 Up Key: ", screenWidth / 2 - 220, 350, 30, WHITE);
 
-	DrawText("Move", screenWidth / 2 + 100, 350, 30, WHITE);
+	DrawText("Jump", screenWidth / 2 + 100, 350, 30, WHITE);
 
 	drawBackToMenu(menuOn, controlsOn);
 
@@ -123,8 +127,8 @@ void drawCredits(bool& menuOn, bool& creditsOn)
 
 	DrawText("Developer: ", screenWidth / 2 - 250, 150, 30, WHITE);
 
-	DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
-	DrawText("Tronik in ITCH.IO ", screenWidth / 2 + 50, 180, 30, WHITE);
+	DrawText("Valentin Villar / Tronik in ITCH.IO", screenWidth / 2 -50, 150, 25, WHITE);
+	DrawText("Francisco Jonas / 4FranJonas2 in ITCH.IO", screenWidth / 2-50 , 180, 25, WHITE);
 
 	DrawText("Background By: ", screenWidth / 2 - 250, 250, 30, WHITE);
 
@@ -132,7 +136,7 @@ void drawCredits(bool& menuOn, bool& creditsOn)
 
 	DrawText("Player By: ", screenWidth / 2 - 250, 350, 30, WHITE);
 
-	DrawText("My self with Piskel", screenWidth / 2 + 50, 350, 30, WHITE);
+	DrawText("Valentin Villar with Piskel", screenWidth / 2 + 50, 350, 30, WHITE);
 
 	DrawText("Obstacle By: ", screenWidth / 2 - 250, 450, 30, WHITE);
 
@@ -208,10 +212,8 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 
 void resetGame()
 {
-	Player player;
-	Obstacle obstacle;
-
 	initPlayer(player);
+	initPlayer(player2);
 	initObstacle(obstacle);
 }
 
