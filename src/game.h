@@ -2,4 +2,12 @@
 
 #include "scene/gameplayScene.h"
 
-void run();
+namespace gameLoop
+{
+	void run();
+	static void Initialization();
+	static void update();
+	static void draw();
+	static void unloadGame();
+	static void close();
+}

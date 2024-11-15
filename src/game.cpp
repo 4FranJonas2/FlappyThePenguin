@@ -4,103 +4,99 @@
 
 //#include "scene/menuScene.h"
 
-static void Initialization();
-static void update();
-static void draw();
-static void unloadGame();
-static void close();
-
-int screenWidth = 1024;
-int screenHeight = 768;
-int screenWidthMin = 0;
-int screenHeightMin = 0;
-
-bool menuOn = true;
-bool controlsOn = false;
-bool creditsOn = false;
-bool creditsOn2 = false;
-bool exitOn = false;
-bool gameOver = false;
-bool pauseOn = false;
-
-
-//Music menuMusic;
-//Music gameplayMusic;
-
-void run()
+namespace gameLoop
 {
-	Initialization();
+	/*int screenWidth = 1024;
+	int screenHeight = 768;
+	int screenWidthMin = 0;
+	int screenHeightMin = 0;*/
 
-	while (!WindowShouldClose() && !endGame)
+	bool menuOn = true;
+	bool controlsOn = false;
+	bool creditsOn = false;
+	bool creditsOn2 = false;
+	bool exitOn = false;
+	bool gameOver = false;
+	bool pauseOn = false;
+
+	//Music menuMusic;
+	//Music gameplayMusic;
+
+	void run()
 	{
-		update();
-		draw();
+		Initialization();
+
+		while (!WindowShouldClose() && !endGame)
+		{
+			update();
+			draw();
+		}
+
+		unloadGame();
+
+		close();
 	}
 
-	unloadGame();
-
-	close();
-}
-
-static void Initialization()
-{
-	InitWindow(screenWidth, screenHeight, "flying guads");
-
-	//InitAudioDevice();
-
-	initGameplay();
-
-	initMenu();
-
-	loadGameplay();
-}
-
-static void update()
-{
-	if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
-		updateGameplay(menuOn, gameOver);
-}
-
-static void draw()
-{
-	BeginDrawing();
-
-	if (menuOn)
+	static void Initialization()
 	{
-		drawMenu(menuOn, controlsOn, creditsOn);
-	}
-	else if (controlsOn)
-	{
-		drawConstrols(menuOn, controlsOn);
-	}
-	else if (creditsOn)
-	{
-		drawCredits(menuOn, creditsOn);
-	}
-	else if (gameOver)
-	{
-		drawGameOver(menuOn, gameOver);
-	}
-	else if (pauseOn)
-	{
-		drawPause(menuOn, pauseOn);
-	}
-	else
-	{
-		drawGameplay(menuOn, pauseOn);
+		InitWindow(screenWidth, screenHeight, "flying guads");
+
+		//InitAudioDevice();
+
+		initGameplay();
+
+		initMenu();
+
+		loadGameplay();
 	}
 
-	EndDrawing();
-}
+	static void update()
+	{
+		if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
+			updateGameplay(menuOn, gameOver);
+	}
 
-static void unloadGame()
-{
-	unloadMenu();
-	unloadGameplay();
-}
+	static void draw()
+	{
+		BeginDrawing();
 
-static void close()
-{
-	CloseAudioDevice();
-	CloseWindow();
+		if (menuOn)
+		{
+			drawMenu(menuOn, controlsOn, creditsOn);
+		}
+		else if (controlsOn)
+		{
+			drawConstrols(menuOn, controlsOn);
+		}
+		else if (creditsOn)
+		{
+			drawCredits(menuOn, creditsOn);
+		}
+		else if (gameOver)
+		{
+			drawGameOver(menuOn, gameOver);
+		}
+		else if (pauseOn)
+		{
+			drawPause(menuOn, pauseOn);
+		}
+		else
+		{
+			drawGameplay(menuOn, pauseOn);
+		}
+
+		EndDrawing();
+	}
+
+	static void unloadGame()
+	{
+		unloadMenu();
+		unloadGameplay();
+	}
+
+	static void close()
+	{
+		CloseAudioDevice();
+		CloseWindow();
+	}
 }
