@@ -2,20 +2,34 @@
 
 #include "scene/menuScene.h"
 
-void initGameplay();
+namespace gamePlay
+{
+	static Texture2D background;
+	static Texture2D waterReflection;
+	static Texture2D clouds;
+	static Texture2D moon;
 
-void loadGameplay();
+	static float scrollingBack = 0.0f;
+	static float scrollingMidBack = 0.0f;
+	static float scrollingMid = 0.0f;
+	static float scrollingFront = 0.0f;
 
-void updateGameplay(bool& menuOn, bool& gameOver);
+	void initGameplay();
 
-void checkCollision(Player& actualPlayer);
+	void loadGameplay();
 
-void drawGameplay(bool& menuOn, bool& pauseOn);
+	void updateGameplay(bool& menuOn, bool& gameOver);
 
-void initBackground();
+	void checkCollision(Player& actualPlayer);
 
-void updateBackground();
+	void drawGameplay(bool& menuOn, bool& pauseOn);
 
-void drawParalaxBackgournd();
+	void initBackground();
 
-void unloadGameplay();
+	void updateBackground();
+
+	void drawParalaxBackgournd();
+
+	void unloadGameplay();
+}
+
