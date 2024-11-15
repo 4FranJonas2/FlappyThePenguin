@@ -39,21 +39,21 @@ namespace gameLoop
 
 	static void Initialization()
 	{
-		InitWindow(screenWidth, screenHeight, "flying guads");
+		InitWindow(screenWidth, screenHeight, "Flappt The Penguin");
 
 		//InitAudioDevice();
 
-		initGameplay();
+		gamePlay::initGameplay();
 
 		initMenu();
 
-		loadGameplay();
+		gamePlay::loadGameplay();
 	}
 
 	static void update()
 	{
 		if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
-			updateGameplay(menuOn, gameOver);
+			gamePlay::updateGameplay(menuOn, gameOver);
 	}
 
 	static void draw()
@@ -62,27 +62,34 @@ namespace gameLoop
 
 		if (menuOn)
 		{
+			gamePlay::drawParalaxBackgournd();
 			drawMenu(menuOn, controlsOn, creditsOn);
 		}
 		else if (controlsOn)
 		{
+			gamePlay::drawParalaxBackgournd();
 			drawConstrols(menuOn, controlsOn);
 		}
 		else if (creditsOn)
 		{
+			gamePlay::drawParalaxBackgournd();
 			drawCredits(menuOn, creditsOn);
 		}
 		else if (gameOver)
 		{
+			gamePlay::drawParalaxBackgournd();
 			drawGameOver(menuOn, gameOver);
+
 		}
 		else if (pauseOn)
 		{
+			gamePlay::drawParalaxBackgournd();
 			drawPause(menuOn, pauseOn);
+
 		}
 		else
 		{
-			drawGameplay(menuOn, pauseOn);
+			gamePlay::drawGameplay(menuOn, pauseOn);
 		}
 
 		EndDrawing();
@@ -91,7 +98,7 @@ namespace gameLoop
 	static void unloadGame()
 	{
 		unloadMenu();
-		unloadGameplay();
+		gamePlay::unloadGameplay();
 	}
 
 	static void close()

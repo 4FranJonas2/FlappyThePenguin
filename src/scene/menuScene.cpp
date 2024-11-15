@@ -35,9 +35,10 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
+	
 	ClearBackground(BLACK);
 
-	DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
+	DrawText(TextFormat("Flappy The Penguin"), screenWidth / 2 - 250, screenHeightMin + 50, 50, RED);
 
 	drawButton(onePlayer);
 	drawButton(twoPlayer);
