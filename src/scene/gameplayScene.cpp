@@ -45,20 +45,23 @@ namespace gamePlay
 
 	void checkCollision(Player& actualPlayer)
 	{
-		bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
-			actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
-			actualPlayer.position.y + actualPlayer.radius >= 0 &&
-			actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight);
-
-		bool collisionBottom = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
-			actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
-			actualPlayer.position.y + actualPlayer.radius >= obstacle.topHeight + obstacle.gap &&
-			actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
-
-		if (collisionTop || collisionBottom)
+		if (actualPlayer.isAlive)
 		{
-			initObstacle(obstacle);
-			actualPlayer.life--;
+			bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
+				actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
+				actualPlayer.position.y + actualPlayer.radius >= 0 &&
+				actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight);
+
+			bool collisionBottom = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
+				actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
+				actualPlayer.position.y + actualPlayer.radius >= obstacle.topHeight + obstacle.gap &&
+				actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
+
+			if (collisionTop || collisionBottom)
+			{
+				initObstacle(obstacle);
+				actualPlayer.life--;
+			}
 		}
 
 	}

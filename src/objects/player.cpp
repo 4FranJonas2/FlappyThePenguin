@@ -37,7 +37,7 @@ void loadPlayer(Player& actualPlayer)
 
 void updatePlayer(Player& actualPlayer)
 {
-	if (!player.isAlive)
+	if (actualPlayer.isAlive)
 	{
 		actualPlayer.speed.y += actualPlayer.grvity * GetFrameTime();
 
@@ -90,16 +90,16 @@ void updatePlayer(Player& actualPlayer)
 			actualPlayer.frameRec.y = static_cast<float>(actualPlayer.currentFrame) * 64.0f;
 		}
 
-		if (player.life == 0)
-		{
-			player.life = false;
-		}
+	}
+	if (actualPlayer.life <= 0)
+	{
+		actualPlayer.isAlive = false;
 	}
 }
 
 void drawPlayer(Player actualPlayer)
 {
-	if (player.isAlive)
+	if (actualPlayer.isAlive)
 	{
 		float p1TextPosXCorrect = 10.0f;
 		float p1TextPosYCorrect = 55.0f;

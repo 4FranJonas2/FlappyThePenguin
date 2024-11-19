@@ -6,11 +6,6 @@
 
 namespace gameLoop
 {
-	/*int screenWidth = 1024;
-	int screenHeight = 768;
-	int screenWidthMin = 0;
-	int screenHeightMin = 0;*/
-
 	bool menuOn = true;
 	bool controlsOn = false;
 	bool creditsOn = false;
