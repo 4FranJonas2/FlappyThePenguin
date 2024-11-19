@@ -17,6 +17,8 @@ struct Player
     float radius;
     bool isActive;
     bool isAlive;
+    bool isHit;
+    bool isInmune;
     int points;
     int life;
     int lastPoints;

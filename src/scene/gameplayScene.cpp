@@ -56,7 +56,7 @@ namespace gamePlay
 	{
 		for (int i = 0; i < maxObstacles; i++)
 		{
-			if (actualPlayer.isAlive)
+			if (actualPlayer.isAlive && !actualPlayer.isInmune)
 			{
 				bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle[i].position.x &&
 					actualPlayer.position.x - actualPlayer.radius <= obstacle[i].position.x + obstacle[i].width &&
@@ -68,10 +68,11 @@ namespace gamePlay
 					actualPlayer.position.y + actualPlayer.radius >= obstacle[i].topHeight + obstacle[i].gap &&
 					actualPlayer.position.y - actualPlayer.radius <= obstacle[i].topHeight + obstacle[i].gap + obstacle[i].bottomHeight);
 
-				if (collisionTop || collisionBottom)
+				if (collisionTop || collisionBottom && !actualPlayer.isHit)
 				{
 					//initObstacle(obstacle);
 					actualPlayer.life--;
+					actualPlayer.isHit = true;
 					break;
 				}
 			}

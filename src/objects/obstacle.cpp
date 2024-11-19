@@ -2,7 +2,7 @@
 
 Obstacle obstacle[maxObstacles];
 float timer = 0.0f;
-float resetTimer = 3.0f;
+float resetTimer = 2.0f;
 
 void initObstacle(Obstacle obst[])
 {

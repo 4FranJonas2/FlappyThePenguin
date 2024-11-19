@@ -6,6 +6,8 @@
 bool onePlayerGame;
 Player player;
 Player player2;
+float playerTimer = 0.0f;
+float playerResetTimer = 1.5f;
 
 void initPlayer(Player& actualPlayer)
 {
@@ -17,6 +19,8 @@ void initPlayer(Player& actualPlayer)
 	actualPlayer.radius = 20.0f;
 	actualPlayer.isActive = true;
 	actualPlayer.life = 3;
+	actualPlayer.isHit = false;
+	actualPlayer.isInmune = false;
 
 	actualPlayer.points = 0;
 	actualPlayer.isAlive = true;
@@ -39,6 +43,22 @@ void updatePlayer(Player& actualPlayer)
 {
 	if (actualPlayer.isAlive)
 	{
+		if (actualPlayer.isHit)
+		{
+			playerTimer -= (GetFrameTime() < playerTimer) ? GetFrameTime() : playerTimer;
+
+			if (playerTimer <= 0)
+			{
+				actualPlayer.isHit = false;
+				actualPlayer.isInmune = false;
+				playerTimer = playerResetTimer;
+			}
+			else
+			{
+				actualPlayer.isInmune = true;
+			}
+		}
+
 		actualPlayer.speed.y += actualPlayer.grvity * GetFrameTime();
 
 		actualPlayer.position.y += actualPlayer.speed.y * GetFrameTime();
@@ -52,7 +72,6 @@ void updatePlayer(Player& actualPlayer)
 
 		actualPlayer.framesCounter++;
 
-		// Every two seconds (120 frames) a new random value is generated
 		if (((actualPlayer.framesCounter / 720) % 2) == 1 && actualPlayer.life > 0)
 		{
 			actualPlayer.points += 1 ;
