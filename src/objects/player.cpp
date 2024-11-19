@@ -19,7 +19,7 @@ void initPlayer(Player& actualPlayer)
 	actualPlayer.life = 3;
 
 	actualPlayer.points = 0;
-	
+	actualPlayer.isAlive = true;
 	actualPlayer.grvity = 500;
 	
 	actualPlayer.currentFrame = 0;
@@ -37,73 +37,84 @@ void loadPlayer(Player& actualPlayer)
 
 void updatePlayer(Player& actualPlayer)
 {
-	actualPlayer.speed.y += actualPlayer.grvity * GetFrameTime();
-
-	actualPlayer.position.y += actualPlayer.speed.y * GetFrameTime();
-
-
-	if (IsKeyDown(KEY_SPACE) && actualPlayer.isPlayer1)
-		actualPlayer.speed.y = -200.f;
-
-	else if (IsKeyDown(KEY_UP) && !actualPlayer.isPlayer1)
-		actualPlayer.speed.y = -200.f;
-
-	actualPlayer.framesCounter++;
-
-	// Every two seconds (120 frames) a new random value is generated
-	if (((actualPlayer.framesCounter / 720) % 2) == 1 && player.life > 0)
+	if (!player.isAlive)
 	{
-		player.points += 1 ;
+		actualPlayer.speed.y += actualPlayer.grvity * GetFrameTime();
 
-		actualPlayer.framesCounter = 0;
-	}
+		actualPlayer.position.y += actualPlayer.speed.y * GetFrameTime();
 
-	if (actualPlayer.position.y > screenHeight)
-	{
-		actualPlayer.life--;
 
-		actualPlayer.position = { static_cast<float>(screenWidthMin) + 200,
-		   static_cast<float>(screenHeight) / 2.0f };
+		if (IsKeyDown(KEY_SPACE) && actualPlayer.isPlayer1)
+			actualPlayer.speed.y = -200.f;
 
-		actualPlayer.speed = { 0.0f, 0.0f };
-	}
+		else if (IsKeyDown(KEY_UP) && !actualPlayer.isPlayer1)
+			actualPlayer.speed.y = -200.f;
 
-	if (actualPlayer.position.y < screenHeightMin + actualPlayer.radius)
-	{
-		actualPlayer.position.y = static_cast<float>(screenHeightMin) + actualPlayer.radius;
-	}
+		actualPlayer.framesCounter++;
 
-	actualPlayer.frameTimeAccum += GetFrameTime();
+		// Every two seconds (120 frames) a new random value is generated
+		if (((actualPlayer.framesCounter / 720) % 2) == 1 && player.life > 0)
+		{
+			player.points += 1 ;
 
-	if (actualPlayer.frameTimeAccum >= (1.0f / actualPlayer.framesSpeed))
-	{
+			actualPlayer.framesCounter = 0;
+		}
 
-		actualPlayer.frameTimeAccum = 0.0f;
+		if (actualPlayer.position.y > screenHeight)
+		{
+			actualPlayer.life--;
 
-		actualPlayer.currentFrame++;
+			actualPlayer.position = { static_cast<float>(screenWidthMin) + 200,
+			   static_cast<float>(screenHeight) / 2.0f };
 
-		if (actualPlayer.currentFrame > 3)
-			actualPlayer.currentFrame = 0;
+			actualPlayer.speed = { 0.0f, 0.0f };
+		}
 
-		actualPlayer.frameRec.y = static_cast<float>(actualPlayer.currentFrame) * 64.0f;
+		if (actualPlayer.position.y < screenHeightMin + actualPlayer.radius)
+		{
+			actualPlayer.position.y = static_cast<float>(screenHeightMin) + actualPlayer.radius;
+		}
+
+		actualPlayer.frameTimeAccum += GetFrameTime();
+
+		if (actualPlayer.frameTimeAccum >= (1.0f / actualPlayer.framesSpeed))
+		{
+
+			actualPlayer.frameTimeAccum = 0.0f;
+
+			actualPlayer.currentFrame++;
+
+			if (actualPlayer.currentFrame > 3)
+				actualPlayer.currentFrame = 0;
+
+			actualPlayer.frameRec.y = static_cast<float>(actualPlayer.currentFrame) * 64.0f;
+		}
+
+		if (player.life == 0)
+		{
+			player.life = false;
+		}
 	}
 }
 
 void drawPlayer(Player actualPlayer)
 {
-	float p1TextPosXCorrect = 10.0f;
-	float p1TextPosYCorrect = 55.0f;
+	if (player.isAlive)
+	{
+		float p1TextPosXCorrect = 10.0f;
+		float p1TextPosYCorrect = 55.0f;
 
-	DrawCircle(static_cast<int>(actualPlayer.position.x), static_cast<int>(actualPlayer.position.y), actualPlayer.radius, BLUE);
+		DrawCircle(static_cast<int>(actualPlayer.position.x), static_cast<int>(actualPlayer.position.y), actualPlayer.radius, BLUE);
 
-	if (actualPlayer.isPlayer1)
-		DrawText("P1", static_cast<int> (actualPlayer.position.x- p1TextPosXCorrect), static_cast<int> (actualPlayer.position.y- p1TextPosYCorrect), 20, ORANGE);
-	if (!actualPlayer.isPlayer1)
-		DrawText("P2", static_cast<int> (actualPlayer.position.x- p1TextPosXCorrect), static_cast<int> (actualPlayer.position.y- p1TextPosYCorrect), 20, RED);
+		if (actualPlayer.isPlayer1)
+			DrawText("P1", static_cast<int> (actualPlayer.position.x - p1TextPosXCorrect), static_cast<int> (actualPlayer.position.y - p1TextPosYCorrect), 20, ORANGE);
+		if (!actualPlayer.isPlayer1)
+			DrawText("P2", static_cast<int> (actualPlayer.position.x - p1TextPosXCorrect), static_cast<int> (actualPlayer.position.y - p1TextPosYCorrect), 20, RED);
 
-	DrawTextureRec(actualPlayer.texture, actualPlayer.frameRec,
-		{ actualPlayer.position.x - actualPlayer.frameRec.width / 2,
-		  actualPlayer.position.y - actualPlayer.frameRec.height / 2 }, WHITE);
+		DrawTextureRec(actualPlayer.texture, actualPlayer.frameRec,
+			{ actualPlayer.position.x - actualPlayer.frameRec.width / 2,
+			  actualPlayer.position.y - actualPlayer.frameRec.height / 2 }, WHITE);
+	}
 }
 
 void unloadPlayer(Player& actualPlayer)
