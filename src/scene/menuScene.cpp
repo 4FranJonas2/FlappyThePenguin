@@ -199,8 +199,10 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 
 	DrawText(TextFormat("What Will You Do"), screenWidth / 2 - 200, screenHeight / 2 - 30, 50, WHITE);
 	DrawText(TextFormat(" P1 Points %i", player.points), screenWidthMin + 200, screenHeight / 2 + 50, 30, ORANGE);
-	DrawText(TextFormat(" P2 Points %i", player.points), screenWidth - 400, screenHeight / 2 + 50, 30, RED);
-
+	if (!onePlayerGame)
+	{
+		DrawText(TextFormat(" P2 Points %i", player.points), screenWidth - 400, screenHeight / 2 + 50, 30, RED);
+	}
 	drawButton(playAgain);
 	drawPlayAgainTitle();
 

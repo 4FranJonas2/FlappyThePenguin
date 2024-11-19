@@ -9,18 +9,19 @@ struct Obstacle
 {
     Vector2 position;
     Vector2 speed;
+    bool isActive;
     int width;
     int topHeight;
     int gap;
     int bottomHeight;
 };
 
-extern Obstacle obstacle;
+extern Obstacle obstacle[maxObstacles];
 //extern Sound loseSfx;
 //extern Sound boostSfx;
 
-void initObstacle(Obstacle& o);
+void initObstacle(Obstacle obst[]);
 void loadObstacle();
-void updateObstacle(Obstacle& o);
-void drawObstacle(Obstacle& o);
+void updateObstacle(Obstacle obst[]);
+void drawObstacle(Obstacle obst[]);
 void unloadObstacle();

@@ -9,3 +9,4 @@ const int screenHeightMin = 0;
 const int buttonWidth = 200;
 const int buttonHeight = 50;
 const int fontSize = 30;
+const int maxObstacles = 20;

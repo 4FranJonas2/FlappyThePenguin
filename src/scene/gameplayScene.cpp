@@ -13,8 +13,6 @@ namespace gamePlay
 		initObstacle(obstacle);
 	}
 
-
-
 	void loadGameplay()
 	{
 		loadPlayer(player);
@@ -34,10 +32,21 @@ namespace gamePlay
 		if (!onePlayerGame)
 			checkCollision(player2);
 
-		if (player.life <= 0 && player2.life <= 0)
+		if (!onePlayerGame)
 		{
-			gameOver = true;
-			drawGameOver(menuOn, gameOver);
+			if (player.life <= 0 && player2.life <= 0)
+			{
+				gameOver = true;
+				drawGameOver(menuOn, gameOver);
+			}
+		}
+		else
+		{
+			if (player.life <= 0)
+			{
+				gameOver = true;
+				drawGameOver(menuOn, gameOver);
+			}
 		}
 
 		updateBackground();
@@ -45,25 +54,28 @@ namespace gamePlay
 
 	void checkCollision(Player& actualPlayer)
 	{
-		if (actualPlayer.isAlive)
+		for (int i = 0; i < maxObstacles; i++)
 		{
-			bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
-				actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
-				actualPlayer.position.y + actualPlayer.radius >= 0 &&
-				actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight);
-
-			bool collisionBottom = (actualPlayer.position.x + actualPlayer.radius >= obstacle.position.x &&
-				actualPlayer.position.x - actualPlayer.radius <= obstacle.position.x + obstacle.width &&
-				actualPlayer.position.y + actualPlayer.radius >= obstacle.topHeight + obstacle.gap &&
-				actualPlayer.position.y - actualPlayer.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
-
-			if (collisionTop || collisionBottom)
+			if (actualPlayer.isAlive)
 			{
-				initObstacle(obstacle);
-				actualPlayer.life--;
+				bool collisionTop = (actualPlayer.position.x + actualPlayer.radius >= obstacle[i].position.x &&
+					actualPlayer.position.x - actualPlayer.radius <= obstacle[i].position.x + obstacle[i].width &&
+					actualPlayer.position.y + actualPlayer.radius >= 0 &&
+					actualPlayer.position.y - actualPlayer.radius <= obstacle[i].topHeight);
+
+				bool collisionBottom = (actualPlayer.position.x + actualPlayer.radius >= obstacle[i].position.x &&
+					actualPlayer.position.x - actualPlayer.radius <= obstacle[i].position.x + obstacle[i].width &&
+					actualPlayer.position.y + actualPlayer.radius >= obstacle[i].topHeight + obstacle[i].gap &&
+					actualPlayer.position.y - actualPlayer.radius <= obstacle[i].topHeight + obstacle[i].gap + obstacle[i].bottomHeight);
+
+				if (collisionTop || collisionBottom)
+				{
+					//initObstacle(obstacle);
+					actualPlayer.life--;
+					break;
+				}
 			}
 		}
-
 	}
 
 	void drawGameplay(bool& menuOn, bool& pauseOn)

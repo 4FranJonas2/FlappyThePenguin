@@ -53,9 +53,9 @@ void updatePlayer(Player& actualPlayer)
 		actualPlayer.framesCounter++;
 
 		// Every two seconds (120 frames) a new random value is generated
-		if (((actualPlayer.framesCounter / 720) % 2) == 1 && player.life > 0)
+		if (((actualPlayer.framesCounter / 720) % 2) == 1 && actualPlayer.life > 0)
 		{
-			player.points += 1 ;
+			actualPlayer.points += 1 ;
 
 			actualPlayer.framesCounter = 0;
 		}
