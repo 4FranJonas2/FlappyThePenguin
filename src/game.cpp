@@ -13,13 +13,14 @@ namespace gameLoop
 	bool exitOn = false;
 	bool gameOver = false;
 	bool pauseOn = false;
-
-	//Music menuMusic;
-	//Music gameplayMusic;
+	bool musicPause = false;
+	float timePlayed = 0.0f;
 
 	void run()
 	{
 		Initialization();
+		PlayMusicStream(menuMusic);
+		PlayMusicStream(gamePlayMusic);
 
 		while (!WindowShouldClose() && !endGame)
 		{
@@ -36,7 +37,9 @@ namespace gameLoop
 	{
 		InitWindow(screenWidth, screenHeight, "Flappt The Penguin");
 
-		//InitAudioDevice();
+		InitAudioDevice();
+		menuMusic = LoadMusicStream("res/sound/menuMusic.mp3");
+		gamePlayMusic = LoadMusicStream("res/sound/gamePlayMusic.mp3");
 
 		gamePlay::initGameplay();
 
@@ -47,8 +50,26 @@ namespace gameLoop
 
 	static void update()
 	{
+		if (menuOn || creditsOn || controlsOn)
+		{
+			UpdateMusicStream(menuMusic);
+
+			if (IsKeyPressed(KEY_P))
+			{
+				musicPause = !musicPause;
+
+				if (musicPause) PauseMusicStream(menuMusic);
+				else ResumeMusicStream(menuMusic);
+			}
+
+			timePlayed = GetMusicTimePlayed(menuMusic) / GetMusicTimeLength(menuMusic);
+
+			if (timePlayed > 1.0f) timePlayed = 1.0f;
+		}
+
 		if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
 			gamePlay::updateGameplay(menuOn, gameOver);
+
 	}
 
 	static void draw()
@@ -59,6 +80,7 @@ namespace gameLoop
 		{
 			gamePlay::drawParalaxBackgournd();
 			drawMenu(menuOn, controlsOn, creditsOn);
+
 		}
 		else if (controlsOn)
 		{
@@ -94,6 +116,8 @@ namespace gameLoop
 	{
 		unloadMenu();
 		gamePlay::unloadGameplay();
+		UnloadMusicStream(menuMusic);
+		UnloadMusicStream(gamePlayMusic);
 	}
 
 	static void close()

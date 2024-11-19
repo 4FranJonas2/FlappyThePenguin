@@ -2,6 +2,8 @@
 
 #include "scene/menuScene.h"
 
+extern Music gamePlayMusic;
+
 namespace gamePlay
 {
 	static Texture2D background;

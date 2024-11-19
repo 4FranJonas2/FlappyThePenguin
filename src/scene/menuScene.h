@@ -3,6 +3,7 @@
 #include "objects/buttons.h"
 
 extern bool endGame;
+extern Music menuMusic;
 
 
 void initMenu();

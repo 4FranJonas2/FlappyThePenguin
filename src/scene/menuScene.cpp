@@ -5,6 +5,7 @@
 //extern Texture2D background;
 //extern Music menuMusic;
 bool endGame;
+Music menuMusic;
 
 void initMenu()
 {

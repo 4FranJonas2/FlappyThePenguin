@@ -1,7 +1,12 @@
 #include "scene/gameplayScene.h"
 
+Music gamePlayMusic;
+
 namespace gamePlay
 {
+	bool musicPause = false;
+	float timePlayed = 0.0f;
+
 	void initGameplay()
 	{
 		initBackground();
@@ -23,6 +28,23 @@ namespace gamePlay
 
 	void updateGameplay(bool& menuOn, bool& gameOver)
 	{
+		if (!menuOn || gameOver)
+		{
+			UpdateMusicStream(gamePlayMusic);
+
+			if (IsKeyPressed(KEY_P))
+			{
+				musicPause = !musicPause;
+
+				if (musicPause) PauseMusicStream(gamePlayMusic);
+				else ResumeMusicStream(gamePlayMusic);
+			}
+
+			timePlayed = GetMusicTimePlayed(gamePlayMusic) / GetMusicTimeLength(gamePlayMusic);
+
+			if (timePlayed > 1.0f) timePlayed = 1.0f;
+		}
+
 		updatePlayer(player);
 		if (!onePlayerGame)
 			updatePlayer(player2);
