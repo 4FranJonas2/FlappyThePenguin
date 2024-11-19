@@ -17,8 +17,8 @@ void initPlayer(Player& actualPlayer)
 	actualPlayer.radius = 20.0f;
 	actualPlayer.isActive = true;
 	actualPlayer.life = 3;
-	
-	actualPlayer.point = 0;
+
+	actualPlayer.points = 0;
 	
 	actualPlayer.grvity = 500;
 	
@@ -41,11 +41,22 @@ void updatePlayer(Player& actualPlayer)
 
 	actualPlayer.position.y += actualPlayer.speed.y * GetFrameTime();
 
+
 	if (IsKeyDown(KEY_SPACE) && actualPlayer.isPlayer1)
 		actualPlayer.speed.y = -200.f;
 
 	else if (IsKeyDown(KEY_UP) && !actualPlayer.isPlayer1)
 		actualPlayer.speed.y = -200.f;
+
+	actualPlayer.framesCounter++;
+
+	// Every two seconds (120 frames) a new random value is generated
+	if (((actualPlayer.framesCounter / 720) % 2) == 1 && player.life > 0)
+	{
+		player.points += 1 ;
+
+		actualPlayer.framesCounter = 0;
+	}
 
 	if (actualPlayer.position.y > screenHeight)
 	{
@@ -66,6 +77,7 @@ void updatePlayer(Player& actualPlayer)
 
 	if (actualPlayer.frameTimeAccum >= (1.0f / actualPlayer.framesSpeed))
 	{
+
 		actualPlayer.frameTimeAccum = 0.0f;
 
 		actualPlayer.currentFrame++;

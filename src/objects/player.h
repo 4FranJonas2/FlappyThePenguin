@@ -16,8 +16,8 @@ struct Player
 
     float radius;
     bool isActive;
+    int points;
     int life;
-    int point;
     int lastPoints;
     int grvity;
     int currentFrame;

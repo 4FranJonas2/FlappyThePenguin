@@ -1,8 +1,5 @@
 #include "scene/gameplayScene.h"
 
-
-
-
 namespace gamePlay
 {
 	void initGameplay()
@@ -37,7 +34,7 @@ namespace gamePlay
 		if (!onePlayerGame)
 			checkCollision(player2);
 
-		if (player.life <= 0 || player2.life <=0)
+		if (player.life <= 0 && player2.life <= 0)
 		{
 			gameOver = true;
 			drawGameOver(menuOn, gameOver);
@@ -85,8 +82,14 @@ namespace gamePlay
 		}
 
 		DrawText(TextFormat(" Life %01i", player.life), screenWidthMin, screenHeightMin, 30, ORANGE);
+		DrawText(TextFormat(" P1 Points %i", player.points), screenWidthMin + 120, screenHeightMin, 30, ORANGE);
+
 		if (!onePlayerGame)
-			DrawText(TextFormat(" Life %01i", player2.life), screenWidth-100, screenHeightMin, 30, RED);
+		{
+			DrawText(TextFormat(" Life %01i", player2.life), screenWidth - 100, screenHeightMin, 30, RED);
+			DrawText(TextFormat(" P2 Points %i", player.points), screenWidth - 350, screenHeightMin, 30, RED);
+		}
+
 	}
 
 	void initBackground()
