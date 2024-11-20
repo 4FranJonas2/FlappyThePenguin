@@ -1,5 +1,8 @@
 #include "objects/player.h"
 
+//Sound loseSfx;
+//Sound boostSfx;
+
 bool onePlayerGame;
 Player player;
 Player player2;

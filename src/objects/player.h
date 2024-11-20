@@ -36,6 +36,9 @@ struct Player
 extern Player player;
 extern Player player2;
 
+//extern Sound loseSfx;
+//extern Sound boostSfx;
+
 void initPlayer(Player& player);
 void loadPlayer(Player& player);
 void updatePlayer(Player& player);

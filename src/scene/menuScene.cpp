@@ -1,5 +1,9 @@
 #include "scene/menuScene.h"
 
+//#include "scene/gameplayScene.h"
+
+//extern Texture2D background;
+//extern Music menuMusic;
 bool endGame;
 Music menuMusic;
 
@@ -23,6 +27,11 @@ void initMenu()
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 {
+	//UpdateMusicStream(menuMusic);
+
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
+	
 	ClearBackground(BLACK);
 
 	DrawText(TextFormat("Flappy The Penguin"), screenWidth / 2 - 250, screenHeightMin + 50, 50, RED);
@@ -67,6 +76,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	if (isButtonPressed(exitGame))
 	{
+		//StopMusicStream(menuMusic);
 		endGame = true;
 	}
 
@@ -82,6 +92,10 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
 {
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
+	//UpdateMusicStream(menuMusic);
+
 	ClearBackground(BLACK);
 
 	DrawText("CONTROLS", screenWidth / 2 - 100, 100, 40, WHITE);
@@ -100,38 +114,34 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 void drawCredits(bool& menuOn, bool& creditsOn)
 {
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
+	//UpdateMusicStream(menuMusic);
+
 	ClearBackground(BLACK);
 
-	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 20, 30, WHITE);
+	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
-	DrawText("Developer: ", 100, 80, 30, WHITE);
+	DrawText("Developer: ", screenWidth / 2 - 250, 150, 30, WHITE);
 
-	DrawText("Valentin Villar / Tronik in ITCH.IO", screenWidth / 2 -50, 60, 25, WHITE);
-	DrawText("Francisco Jonas / 4FranJonas2 in ITCH.IO", screenWidth / 2-50 , 80, 25, WHITE);
+	DrawText("Valentin Villar / Tronik in ITCH.IO", screenWidth / 2 -50, 150, 25, WHITE);
+	DrawText("Francisco Jonas / 4FranJonas2 in ITCH.IO", screenWidth / 2-50 , 180, 25, WHITE);
 
-	DrawText("Background By: ", 100, 140, 30, WHITE);
+	DrawText("Background By: ", screenWidth / 2 - 250, 250, 30, WHITE);
 
-	DrawText(" https://free-game-assets.itch.io/ocean-and-clouds-free-pixel-art-backgrounds", 400, 130, 15, WHITE);
+	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 250, 30, WHITE);
 
-	DrawText("Player By: ", 100, 200, 30, WHITE);
+	DrawText("Player By: ", screenWidth / 2 - 250, 350, 30, WHITE);
 
-	DrawText("Valentin Villar with Piskel", 400, 200, 30, WHITE);
+	DrawText("Valentin Villar with Piskel", screenWidth / 2 + 50, 350, 30, WHITE);
 
-	DrawText("Sounds Effects By: ", 100, 260, 30, WHITE);
+	DrawText("Obstacle By: ", screenWidth / 2 - 250, 450, 30, WHITE);
 
-	DrawText(" https://kenney.nl/assets/interface-sounds / https://kenney.nl/assets/impact-sounds", 400, 270, 12, WHITE);
+	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 450, 30, WHITE);
 
-	DrawText("Menu Music by: ", 100, 320, 30, WHITE);
+	DrawText("Library: ", screenWidth / 2 - 250, 550, 30, WHITE);
 
-	DrawText("https://pixabay.com/sound-effects/game-music-loop-7-145285/", 400, 330, 12, WHITE);
-
-	DrawText("Game Music by: ", 100, 380, 30, WHITE);
-
-	DrawText("https://pixabay.com/sound-effects/cinematic-music-sketches-11-cinematic-percussion-sketch-116186/", 400, 390, 12, WHITE);
-
-	DrawText("Library: ", 100, 560, 30, WHITE);
-
-	DrawText("Raylib", 300, 560, 30, WHITE);
+	DrawText("Raylib", screenWidth / 2 + 50, 550, 30, WHITE);
 
 	drawBackToMenu(menuOn, creditsOn);
 
@@ -154,6 +164,8 @@ void drawBackToMenu(bool& boolTrue, bool& boolFalse)
 
 void drawPause(bool& menuOn, bool& pauseOn)
 {
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
 	UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
@@ -182,6 +194,8 @@ void drawPause(bool& menuOn, bool& pauseOn)
 
 void drawGameOver(bool& menuOn, bool& gameOver)
 {
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
 	UpdateMusicStream(menuMusic); 
 
 	ClearBackground(BLACK);

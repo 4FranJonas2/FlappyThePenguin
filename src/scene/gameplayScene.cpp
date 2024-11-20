@@ -97,6 +97,7 @@ namespace gamePlay
 
 				if (collisionTop || collisionBottom && !actualPlayer.isHit)
 				{
+					//initObstacle(obstacle);
 					PlaySound(impactSound);
 					actualPlayer.life--;
 					actualPlayer.isHit = true;

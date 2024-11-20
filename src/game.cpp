@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+//#include "scene/menuScene.h"
+
 namespace gameLoop
 {
 	bool menuOn = true;

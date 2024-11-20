@@ -39,7 +39,7 @@ void drawButton(Button& b)
 	
 	if (mouseOverButton && isOnButton)
 	{
-		//PlaySound(buttonSound);
+		PlaySound(buttonSound);
 		isOnButton = false;
 	}
 	
@@ -100,3 +100,4 @@ void drawPlayAgainTitle()
 {
 	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 +60, 510, fontSize, RED);
 }
+

@@ -4,6 +4,7 @@
 
 #include "objects/player.h"
 
+
 struct Obstacle
 {
     Vector2 position;
@@ -16,8 +17,11 @@ struct Obstacle
 };
 
 extern Obstacle obstacle[maxObstacles];
+//extern Sound loseSfx;
+//extern Sound boostSfx;
 
 void initObstacle(Obstacle obst[]);
 void loadObstacle();
 void updateObstacle(Obstacle obst[]);
 void drawObstacle(Obstacle obst[]);
+void unloadObstacle();
