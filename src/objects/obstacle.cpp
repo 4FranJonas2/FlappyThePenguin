@@ -71,7 +71,3 @@ void drawObstacle(Obstacle obst[])
 		DrawRectangle(static_cast<int>(obst[i].position.x), static_cast<int>(obst[i].topHeight + obst[i].gap), obst[i].width, obst[i].bottomHeight, RED);
 	}
 }
-
-void unloadObstacle()
-{
-}
