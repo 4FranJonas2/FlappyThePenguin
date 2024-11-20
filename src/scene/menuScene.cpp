@@ -77,7 +77,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 		controlsOn = false;
 	}
 
-	DrawText("0.4", screenWidth - 50, screenHeight - 50, 30, RED);
+	DrawText("1.0", screenWidth - 50, screenHeight - 50, 30, RED);
 }
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
