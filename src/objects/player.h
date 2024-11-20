@@ -5,6 +5,7 @@
 #include "objects/utils.h"
 
 extern bool onePlayerGame;
+extern Sound jumpSound;
 
 struct Player
 {

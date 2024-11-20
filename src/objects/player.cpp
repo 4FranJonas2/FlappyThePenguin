@@ -6,6 +6,8 @@
 bool onePlayerGame;
 Player player;
 Player player2;
+Sound jumpSound;
+Sound impactGround;
 float playerTimer = 0.0f;
 float playerResetTimer = 1.5f;
 
@@ -64,11 +66,17 @@ void updatePlayer(Player& actualPlayer)
 		actualPlayer.position.y += actualPlayer.speed.y * GetFrameTime();
 
 
-		if (IsKeyDown(KEY_SPACE) && actualPlayer.isPlayer1)
+		if (IsKeyPressed(KEY_SPACE) && actualPlayer.isPlayer1)
+		{
+			PlaySound(jumpSound);
 			actualPlayer.speed.y = -200.f;
+		}
 
-		else if (IsKeyDown(KEY_UP) && !actualPlayer.isPlayer1)
+		else if (IsKeyPressed(KEY_UP) && !actualPlayer.isPlayer1)
+		{
+			PlaySound(jumpSound);
 			actualPlayer.speed.y = -200.f;
+		}
 
 		actualPlayer.framesCounter++;
 
@@ -85,7 +93,7 @@ void updatePlayer(Player& actualPlayer)
 
 			actualPlayer.position = { static_cast<float>(screenWidthMin) + 200,
 			   static_cast<float>(screenHeight) / 2.0f };
-
+			PlaySound(impactGround);
 			actualPlayer.speed = { 0.0f, 0.0f };
 		}
 

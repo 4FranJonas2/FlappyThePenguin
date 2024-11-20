@@ -1,6 +1,8 @@
 #include "scene/gameplayScene.h"
 
 Music gamePlayMusic;
+Sound impactSound;
+Sound gameOverSound;
 
 namespace gamePlay
 {
@@ -67,6 +69,7 @@ namespace gamePlay
 			if (player.life <= 0)
 			{
 				gameOver = true;
+				PlaySound(gameOverSound);
 				drawGameOver(menuOn, gameOver);
 			}
 		}
@@ -93,6 +96,7 @@ namespace gamePlay
 				if (collisionTop || collisionBottom && !actualPlayer.isHit)
 				{
 					//initObstacle(obstacle);
+					PlaySound(impactSound);
 					actualPlayer.life--;
 					actualPlayer.isHit = true;
 					break;
@@ -111,7 +115,7 @@ namespace gamePlay
 		drawObstacle(obstacle);
 
 		drawButton(pauseGame);
-		//drawPauseButtonTitle();
+		drawPauseButtonTitle();
 
 		if (isButtonPressed(pauseGame))
 		{

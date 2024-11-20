@@ -40,6 +40,11 @@ namespace gameLoop
 		InitAudioDevice();
 		menuMusic = LoadMusicStream("res/sound/menuMusic.mp3");
 		gamePlayMusic = LoadMusicStream("res/sound/gamePlayMusic.mp3");
+		jumpSound = LoadSound("res/sound/flySound.wav");
+		buttonSound = LoadSound("res/sound/overButSound.wav");
+		impactSound = LoadSound("res/sound/iceImpact.wav");
+		impactGround = LoadSound("res/sound/impactGround.wav");
+		gameOverSound = LoadSound("res/sound/ gameOverSound.wav");
 
 		gamePlay::initGameplay();
 
@@ -118,6 +123,11 @@ namespace gameLoop
 		gamePlay::unloadGameplay();
 		UnloadMusicStream(menuMusic);
 		UnloadMusicStream(gamePlayMusic);
+		UnloadSound(jumpSound);
+		UnloadSound(buttonSound);
+		UnloadSound(impactSound);
+		UnloadSound(impactGround);
+		UnloadSound(gameOverSound);
 	}
 
 	static void close()

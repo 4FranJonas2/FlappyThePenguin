@@ -11,6 +11,8 @@ Button exitGame;
 Button pauseGame;
 Button resumeGame;
 Button playAgain;
+Sound buttonSound;
+bool isOnButton = false;
 
 void initButton(Button& b, int xPos, int yPos)
 {
@@ -22,9 +24,27 @@ void initButton(Button& b, int xPos, int yPos)
 
 void drawButton(Button& b)
 {
-	Color buttonColor = CheckCollisionPointRec(GetMousePosition(),
-		Rectangle{ static_cast<float>(b.posX), static_cast<float>(b.posY),
-		static_cast<float>(b.width), static_cast<float>(b.height) }) ? DARKGRAY : LIGHTGRAY;
+	bool mouseOverButton = CheckCollisionPointRec(GetMousePosition(), Rectangle{ static_cast<float>(b.posX), static_cast<float>(b.posY),
+		static_cast<float>(b.width), static_cast<float>(b.height) });
+	Color buttonColor;
+
+	if (mouseOverButton)
+	{
+		buttonColor = DARKGRAY;
+	}
+	else
+	{
+		buttonColor = LIGHTGRAY;
+	}
+	
+	if (mouseOverButton && isOnButton)
+	{
+		PlaySound(buttonSound);
+		isOnButton = false;
+	}
+	
+
+	isOnButton = mouseOverButton;
 
 	DrawRectangle(b.posX, b.posY, b.width, b.height, buttonColor);
 }
@@ -63,13 +83,13 @@ void drawExitTitle()
 
 void drawBackToMenuTitle()
 {
-	DrawText(TextFormat("Back Menu"), screenWidth - 200, screenHeight -50, fontSize, RED);
+	DrawText(TextFormat("Back Menu"), screenWidth - 200, screenHeight - 50, fontSize, RED);
 }
 
-//void drawPauseButtonTitle()
-//{
-//	DrawText(TextFormat("PAUSE"), screenWidth - 150, 560, fontSize, RED);
-//}
+void drawPauseButtonTitle()
+{
+	DrawText(TextFormat("PAUSE"), screenWidth - 150, 560, fontSize, RED);
+}
 
 void drawResumeGameTitle()
 {

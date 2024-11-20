@@ -3,6 +3,10 @@
 #include "scene/menuScene.h"
 
 extern Music gamePlayMusic;
+extern Sound impactSound;
+extern Sound impactGround;
+extern Sound gameOverSound;
+
 
 namespace gamePlay
 {

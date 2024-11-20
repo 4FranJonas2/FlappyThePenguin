@@ -19,6 +19,7 @@ extern Button exitGame;
 extern Button pauseGame;
 extern Button resumeGame;
 extern Button playAgain;
+extern Sound buttonSound;
 
 void initButton(Button& b, int xPos, int yPos);
 void drawButton(Button& b);
@@ -30,6 +31,6 @@ void drawControlTitle();
 void drawCreditsTitle();
 void drawExitTitle();
 void drawBackToMenuTitle();
-//void drawPauseButtonTitle();
+void drawPauseButtonTitle();
 void drawResumeGameTitle();
 void drawPlayAgainTitle();
