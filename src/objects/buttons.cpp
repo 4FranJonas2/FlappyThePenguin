@@ -88,7 +88,7 @@ void drawBackToMenuTitle()
 
 void drawPauseButtonTitle()
 {
-	DrawText(TextFormat("PAUSE"), screenWidth - 150, 560, fontSize, RED);
+	DrawText(TextFormat("PAUSE"), screenWidth / 2 + 360, 710, fontSize, RED);
 }
 
 void drawResumeGameTitle()
@@ -98,6 +98,6 @@ void drawResumeGameTitle()
 
 void drawPlayAgainTitle()
 {
-	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 90, 510, fontSize, RED);
+	DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 +60, 510, fontSize, RED);
 }
 

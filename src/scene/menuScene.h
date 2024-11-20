@@ -22,5 +22,4 @@ void drawGameOver(bool& menuOn, bool& gameOver);
 
 void resetGame();
 
-void unloadMenu();
 

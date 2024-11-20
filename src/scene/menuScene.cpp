@@ -9,13 +9,8 @@ Music menuMusic;
 
 void initMenu()
 {
-	//background = LoadTexture("res/background.png");
-	//
-	//menuMusic = LoadMusicStream("res/menuMusic.mp3");
-	//
-	//SetMusicVolume(menuMusic, 0.5f);
-	//
-	//PlayMusicStream(menuMusic);
+	SetMusicVolume(menuMusic, 0.5f);
+	
 	int midScreenX = screenWidth / 2;
 	endGame = false;
 
@@ -27,7 +22,7 @@ void initMenu()
 
 	initButton(backToMenu, screenWidth - 220, screenHeight - 60);
 	initButton(resumeGame, midScreenX - 200, 500);
-	initButton(playAgain, midScreenX - 100, 500);
+	initButton(playAgain, midScreenX +50, 500);
 }
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
@@ -171,7 +166,7 @@ void drawPause(bool& menuOn, bool& pauseOn)
 {
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	//UpdateMusicStream(menuMusic);
+	UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
 
@@ -182,8 +177,17 @@ void drawPause(bool& menuOn, bool& pauseOn)
 	drawButton(resumeGame);
 	drawResumeGameTitle();
 
+	drawButton(playAgain);
+	drawPlayAgainTitle();
+
 	if (isButtonPressed(resumeGame))
 		pauseOn = false;
+
+	if (isButtonPressed(playAgain))
+	{
+		pauseOn = false;
+		resetGame();
+	}
 
 	drawBackToMenu(menuOn, pauseOn);
 }
@@ -192,7 +196,7 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 {
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	//UpdateMusicStream(menuMusic); 
+	UpdateMusicStream(menuMusic); 
 
 	ClearBackground(BLACK);
 
@@ -221,12 +225,6 @@ void resetGame()
 	initPlayer(player);
 	initPlayer(player2);
 	initObstacle(obstacle);
-}
-
-void unloadMenu()
-{
-	//UnloadTexture(background);
-	//UnloadMusicStream(menuMusic);
 }
 
 

@@ -119,7 +119,7 @@ namespace gameLoop
 
 	static void unloadGame()
 	{
-		unloadMenu();
+		
 		gamePlay::unloadGameplay();
 		UnloadMusicStream(menuMusic);
 		UnloadMusicStream(gamePlayMusic);

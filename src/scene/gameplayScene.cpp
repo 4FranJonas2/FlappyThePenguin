@@ -18,6 +18,8 @@ namespace gamePlay
 		if (!onePlayerGame)
 			initPlayer(player2);
 		initObstacle(obstacle);
+
+		initButton(pauseGame, screenWidth / 2 + 300, 700);
 	}
 
 	void loadGameplay()
