@@ -7,7 +7,6 @@ extern Sound impactSound;
 extern Sound impactGround;
 extern Sound gameOverSound;
 
-
 namespace gamePlay
 {
 	static Texture2D background;
@@ -38,4 +37,3 @@ namespace gamePlay
 
 	void unloadGameplay();
 }
-

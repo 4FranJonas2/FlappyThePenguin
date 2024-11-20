@@ -5,7 +5,6 @@
 extern bool endGame;
 extern Music menuMusic;
 
-
 void initMenu();
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn);
@@ -21,5 +20,3 @@ void drawPause(bool& menuOn, bool& pauseOn);
 void drawGameOver(bool& menuOn, bool& gameOver);
 
 void resetGame();
-
-
